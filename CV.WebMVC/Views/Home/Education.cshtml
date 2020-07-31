@@ -1,0 +1,84 @@
+﻿@model CV.Models.Formation;
+
+@{
+    ViewData["Title"] = "Formación";
+}
+
+<div class="text-center">
+    <hr />
+    @if (Model.Educations != null && Model.Educations.Count > 0)
+    {
+        <h4>Educación</h4>
+
+        @foreach (var education in Model.Educations)
+        {
+            var base64 = education.Logo == null ? String.Empty : Convert.ToBase64String(@education.Logo);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+            <div>
+                <table class="table table-borderless" style="table-layout: fixed; width: 100%;">
+                    <tr>
+                        <td width="20%" rowspan="3">
+                            <a href=@education.WebSite target="_blank">
+                                <img class="rounded-circle" alt="Logo" src="@imgSrc" data-holder-rendered="true" width="50" height="50">
+                            </a>
+                        </td>
+                        <td style="word-wrap: break-word; padding-bottom: 0px" width="80%" align="left">
+                            <font color="white" size="3"><b>@education.DegreeLevel - @education.DegreeName </b></font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; padding-top: 0px; padding-bottom: 0px" width="80%" align="left">
+                            <font color="white">@education.SchoolName @education.Duration</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; padding-top: 0px" width="80%" align="left">
+                            <font color="white">@education.DegreeStatus @education.Detail</font>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    }
+
+
+    @if (Model.Courses != null && Model.Courses.Count > 0)
+    {
+        <hr />
+        <h4>Cursos y Certificaciones</h4>
+        <div>
+            <table class="table table-borderless" style="table-layout: fixed; width: 100%;">
+                @foreach (var course in Model.Courses)
+                {
+                    var base64 = course.Logo == null ? String.Empty : Convert.ToBase64String(@course.Logo);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <tr>
+                        @if (String.IsNullOrEmpty(base64))
+                        {
+                            <td width="10%"></td>
+                            <td style="word-wrap: break-word; padding-bottom: 0px; padding-top: 0px" align="left" >
+                                <font color="white" size="3"><b>• @course.TypeCourse </b></font>
+                                <font color="white" size="3">@course.CourseName </font>
+                                <font color="white" size="2">@course.Detail</font>
+                            </td>
+                        }
+                        else
+                        {
+                            <td width="15%">
+                                <img class="rounded-circle" alt="Logo" src="@imgSrc" data-holder-rendered="true" width="30" height="30" >
+                            </td>
+                            <td style="word-wrap: break-word" align="left" valign="middle">
+                                <font color="white" size="3"><b>• @course.TypeCourse </b></font>
+                                <font color="white" size="3">@course.CourseName </font>
+                                <font color="white" size="2">@course.Detail</font>
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+
+</div>

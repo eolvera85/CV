@@ -1,0 +1,92 @@
+﻿@model CV.Models.Skills;
+
+@{
+    ViewData["Title"] = "Competencias";
+    string allTools = string.Empty;
+}
+
+<div class="text-center">
+    @if (Model.Technologies != null && Model.Technologies.Count > 0)
+    {
+        <hr />
+        <h5>Lenguajes / Tecnologias / Base Datos</h5>
+        <hr />
+        <div>
+            <table class="table table-borderless" style="table-layout: fixed; width: 100%;">
+                @foreach (var technologie in Model.Technologies)
+                {
+                    <tr>
+                        <td style="word-wrap: break-word; padding-top: 0px; padding-bottom: 0px" width="50%" align="left">
+                            <font color="white" size="2">@technologie.Name</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; padding-top: 0px; padding-bottom: 0px" width="80%" align="left">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: @technologie.Percentage.ToString()%" aria-valuenow=@technologie.Percentage.ToString() aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+
+    @if (Model.Tools != null && Model.Tools.Count > 0)
+    {
+        allTools = String.Empty;
+        @foreach (var tool in Model.Tools)
+        {
+            allTools += ", " + tool.Name;
+        }
+
+        <hr />
+        <h5>Herramientas / SO / Paqueterias</h5>
+        <div>
+            <font color="white" size="4">@allTools.Substring(2, @allTools.Length - 2)</font>
+        </div>
+    }
+
+    @if (Model.Abilities != null && Model.Abilities.Count > 0)
+    {
+        allTools = String.Empty;
+        @foreach (var tool in Model.Abilities)
+        {
+            allTools += ", " + tool.Name;
+        }
+
+        <hr />
+        <h5>Habilidades</h5>
+        <div>
+            <font color="white" size="4">@allTools.Substring(2, @allTools.Length - 2)</font>
+        </div>
+    }
+
+    @if (Model.Languages != null && Model.Languages.Count > 0)
+    {
+        <hr />
+        <h5>Idiomas</h5>
+
+        <div>
+            <table class="table table-borderless" style="table-layout: fixed; width: 100%;">
+                @foreach (var language in Model.Languages)
+                {
+                    var base64 = @language.Logo == null ? String.Empty : Convert.ToBase64String(@language.Logo);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <tr>
+                        <td width="20%"  style="padding-bottom:10px; padding-top:0">
+                            <img class="rounded-circle" alt="Logo" src="@imgSrc" data-holder-rendered="true" width="40" height="40">
+                        </td>
+                        <td style="word-wrap: break-word; padding-bottom:0; padding-top:0" align="left" valign="middle">
+                            <font color="white" size="4"><b>@language.Name</b></font>
+                            <font color="white" size="3">@language.Detail</font>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+
+</div>
+

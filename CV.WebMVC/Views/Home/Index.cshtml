@@ -1,0 +1,16 @@
+﻿@model CV.Models.Curriculum;
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <h1 class="cover-heading">@Model.Name</h1>
+        <p class="lead">@Model.Title01 | @Model.Title02</p>
+        <p></p>
+        <p class="lead">
+            <a href="@Url.Action("Download", "Home")" class="btn btn-lg btn-secondary">Descarga CV</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model CV.Models.Contact
+
+@{
+    ViewData["Title"] = "Contacto";
+}
+
+<hr />
+<div class="text-left">
+    <form asp-action="Contact" method="post" id="MyContact">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input asp-for="CvId" class="form-control" type="hidden" value="1" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" placeholder="Con quien tengo el gusto" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" type="email" aria-describedby="emailHelp" placeholder="Email para contactarte" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Subject" class="control-label"></label>
+            <input asp-for="Subject" class="form-control" placeholder="Asunto por el que me quieres contactar" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Body" class="control-label"></label>
+            <textarea asp-for="Body" class="form-control" placeholder="En que puedo ayudarte" rows="5"></textarea>
+            <span asp-validation-for="Body" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-right">
+            <input type="submit" value="Enviar" class="btn btn-lg btn-secondary" />
+        </div>
+    </form>
+</div>
+
+

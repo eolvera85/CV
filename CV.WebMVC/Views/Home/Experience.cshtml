@@ -1,0 +1,35 @@
+﻿@model List<CV.Models.Experience>
+
+@{
+    ViewData["Title"] = "Experiencia";
+}
+
+<div class="text-center">
+    <hr />
+    @foreach (var experience in Model)
+    {
+        var base64 = experience.Logo == null ? String.Empty : Convert.ToBase64String(@experience.Logo);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <div>
+            <table class="table table-borderless" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td width="20%" rowspan="2">
+                        <a href=@experience.WebSite target="_blank" title="@experience.Bussiness">
+                            <img class="rounded-circle" alt="Logo" src="@imgSrc" data-holder-rendered="true" width="50" height="50">
+                        </a>
+                    </td>
+                    <td style="word-wrap: break-word; padding-bottom:0px" width="80%" align="left">
+                        <font color="white" size="3"><b>@experience.CompanyName | @experience.JobTitle</b></font>
+                        <font color="white" size="2">@experience.Duration</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="word-wrap:break-word; padding-top:0px; padding:0px; margin:0px; font-family:'Segoe UI'" width="80%" align="left" >
+                        <pre style="white-space:pre-line; font-family: Arial;"><font color="white" size="2" >@experience.Detail</font></pre>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/cover.css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @@media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "nav-link active" : "nav-link")" href="@Url.Action("Index", "Home")">Inicio</a>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "AboutMe" ? "nav-link active" : "nav-link")" href="@Url.Action("AboutMe", "Home")">Acerca de mi</a>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Experience" ? "nav-link active" : "nav-link")" href="@Url.Action("Experience", "Home")">Experiencia</a>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Education" ? "nav-link active" : "nav-link")" href="@Url.Action("Education", "Home")">Formación</a>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Skills" ? "nav-link active" : "nav-link")" href="@Url.Action("Skills", "Home")">Competencias</a>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "nav-link active" : "nav-link")" href="@Url.Action("Contact", "Home")">Contacto</a>
+                </nav>
+            </div>
+        </header>
+
+        <partial name="_CookieConsentPartial" />
+
+        <main role="main" class="inner cover">
+            @RenderBody()
+            <hr />
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>&copy; 2020 Developed by <a href="https://www.linkedin.com/in/eolvera85/" target="_blank">@@eolvera85</a></p>
+            </div>
+        </footer>
+
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+
+        @RenderSection("Scripts", required: false)
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    @{
+        var success = TempData["Success"] != null ? (string)TempData["Success"] : "";
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><font color="black">Gracias</font></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <font color="black">
+                        Hola <b>@success</b> pronto me estare comunicando contigo.
+                    </font>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @if (!string.IsNullOrEmpty(success))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#exampleModalCenter').modal('toggle')
+            });
+        </script>
+    }
+
+</body>
+</html>

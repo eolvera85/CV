@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CV.DataAccess\CV.DataAccess.csproj" />
+    <ProjectReference Include="..\CV.Services.Contracts\CV.Services.Contracts.csproj" />
+    <ProjectReference Include="..\CV.Utilities\CV.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
